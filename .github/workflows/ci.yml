@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    # Looks like Github Actions leaks fds to child processes
+    # https://github.com/actions/runner/issues/1188
+    - run: ls -l /proc/self/fd
+
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # Make "git describe" work
+
+    - run: ./foo.sh
