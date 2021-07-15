@@ -11,7 +11,7 @@ jobs:
 
     # Looks like Github Actions leaks fds to child processes
     # https://github.com/actions/runner/issues/1188
-    - run: ls -l /proc/self/fd
+    #- run: ls -l /proc/self/fd
 
     - uses: actions/checkout@v2
       with:
